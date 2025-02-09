@@ -1,0 +1,70 @@
+or the front-end:
+
+def display_cars(cars):
+    print("\nAvailable Cars:")
+    for car in cars:
+        status = "Available" if car["available"] else "Rented"
+        print(f"ID: {car['id']} - {car['brand']} {car['model']} - ${car['rental_price']}/day - {status}")
+
+def main_menu():
+    print("Welcome to RentACar!")
+    print("1. View Cars")
+    print("2. Rent a Car")
+    print("3. Return a Car")
+    print("4. Exit")
+    return input("Please choose an option (1-4): ")
+3. Project Manager & Tester (Student 3)
+Role Overview: The Project Manager ensures that tasks are completed on time and the project is tested thoroughly. They will also write the project's documentation, outlining the setup, usage, and functionality of the system.
+
+Key Responsibilities:
+
+Test the functions by running manual tests and ensure everything works as expected.
+Coordinate the integration between front-end and back-end components.
+Write the README.md file with a description of the project, how to install and run it, and how each function works.
+Tasks:
+
+Write simple test cases to ensure that renting and returning cars work as expected.
+Verify that the user interface correctly interacts with the backend logic.
+Document the project setup, usage, and functionality in the README.md file.
+Advice: Ensure you test all edge cases, such as attempting to rent a car that is already rented. Write clear documentation for anyone who wants to understand how the system works.
+
+💡 Recommendations
+Communication: Constant communication is key. Ensure the Front-End Developer and Back-End Developer work closely to integrate the functions smoothly.
+Version Control: Use GitHub for version control. Each developer should work on their own branch and submit pull requests for review.
+Documentation: Document all functions clearly. This will make testing and debugging easier.
+📋 Project Structure
+├── rentacar/
+│   ├── backend.py         # Backend functions (rent_car, return_car, etc.)
+│   ├── frontend.py        # Frontend functions (display_cars, main_menu, etc.)
+│   ├── data/              # JSON or text files for storing cars and user data
+├── tests/
+│   ├── test_backend.py    # Tests for backend functions
+│   ├── test_frontend.py   # Tests for frontend functions
+├── README.md              # Project documentation
+🛠️ Tools and Technologies
+Python: Core programming language.
+Git/GitHub: Version control for collaboration.
+Manual Testing: Ensure functionality through manual tests and basic unit tests.
+🎯 Success Criteria
+The project is considered successful if:
+
+Users can view cars, rent a car, and return a car successfully.
+Data is stored and manipulated using functions, dictionaries, and lists.
+The system is tested and documented, and the team works collaboratively on GitHub.
+🔧 Installation Guide
+Clone the repository:
+
+git clone https://github.com/yourusername/rentacar-platform.git
+cd rentacar-platform
+Run the platform:
+
+python frontend.py
+Run manual tests:
+
+python tests/test_backend.py
+📅 Timeline
+Task	Deadline	Responsible Student
+Backend Development	Week 1	Back-End Developer
+Frontend Development	Week 2	Front-End Developer
+Testing & Documentation	Week 3	Project Manager
+Final Review & Submit	End of Week 3	All

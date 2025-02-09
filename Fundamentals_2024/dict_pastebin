@@ -1,0 +1,140 @@
+#1
+characters = input()
+characters = characters.replace(" ", "" )
+# characters = [character for character in input() if character != " "]
+occurrences = {}
+for symbol in characters:
+    if symbol not in occurrences.keys(): # We still have no such key
+        occurrences[symbol] = 0
+    occurrences[symbol] += 1
+for symbol, occurrences in occurrences.items():
+    print(f"{symbol} -> {occurrences}")
+
+#2
+resources = {}
+while True:
+    current_resources = input()
+    if current_resources == "stop":
+        break
+    current_quantity = int(input())
+    if current_resources not in resources.keys():
+        resources[current_resources] = 0
+    resources[current_resources] += current_quantity
+for resource, quantity in resources.items():
+    print(f"{resource} -> {quantity}")
+
+#3
+countries = input().split(", ")
+capitals = input().split(", ")
+# information = {countries[index]:capitals[index] for index in range(len(countries))}
+information = dict(zip(countries, capitals))
+for country, capital in information.items():
+    print(f"{country} -> {capital}")
+# for index in range(len(countries)):
+#     print(f"{countries[index]} -> {capitals[index]}")
+
+#4
+phohebook = {}
+while True:
+    entry = input()
+    if "-" not in entry:
+        break
+    name , phone_number = entry.split("-")
+    phohebook[name] = phone_number
+searches = int(entry)
+for current_search in range(searches):
+    searched_name = input()
+    if searched_name in phohebook.keys():
+        print(f"{searched_name} -> {phohebook[searched_name]}")
+    else:
+        print(f"Contact {searched_name} does not exist.")
+
+#5
+items = {"shards": 0, "fragments": 0, "motes": 0}
+obtained = False
+while not obtained:
+    current_items = input().split()
+    for index in range(0, len(current_items), 2):
+        key = current_items[index + 1].lower()
+        value = int(current_items[index])
+        if key not in items.keys(): # if key not in items:
+            items[key] = 0
+        items[key] += value
+        if items["shards"] >= 250:
+            print("Shadowmourne obtained!")
+            items["shards"] -= 250
+            obtained = True
+        elif items["fragments"] >= 250:
+            print("Valanyr obtained!")
+            items["fragments"] -= 250
+            obtained = True
+        elif items["motes"] >= 250:
+            print("Dragonwrath obtained!")
+            items["motes"] -= 250
+            obtained = True
+        if obtained:
+            break
+for material, quantity in items.items():
+    print(f"{material}: {quantity}")
+
+
+
+
+#11
+force_side_dictionary = {}
+command = input()
+while command != "Lumpawaroo":
+    if "|" in command: #"{force_side} | {force_user}"
+        force_side,force_user = command.split(" | ")
+        user_is_part_of_the_force = False
+        for force_side_users in force_side_dictionary.values():
+            if force_user in force_side_users:
+                user_is_part_of_the_force = True
+                break
+        if not user_is_part_of_the_force:
+            if force_side not in force_side_dictionary.keys():
+                force_side_dictionary[force_side] = []
+            force_side_dictionary[force_side].append(force_user)
+    elif "->" in command: #"{force_user} -> {force_side}"
+        force_user, force_side = command.split(" -> ")
+        for force_side_users in force_side_dictionary.values():
+            if force_user in force_side_users:
+                force_side_users.remove(force_user)
+                break
+        if force_side not in force_side_dictionary.keys():
+            force_side_dictionary[force_side] = []
+        force_side_dictionary[force_side].append(force_user)
+        print(f"{force_user} joins the {force_side} side!")
+    command = input()
+for force_side, force_users in force_side_dictionary.items():
+    if len(force_users) > 0: #if len(force_users)
+        print(f"Side: {force_side}, Members: {len(force_users)}")
+        for force_user in force_users:
+            print(f"! {force_user}")
+
+
+#12
+users_points_dictionary = {}
+courses_dictionary = {}
+while True:
+    result = input().split("-")
+    if len(result) == 1: # exam finished received
+        break
+    elif len(result) == 2: # User banned
+        banned_name = result[0]
+        del users_points_dictionary[banned_name]
+    else:
+        name, course, points = result[0], result[1], int(result[2])
+        if name not in users_points_dictionary:
+            users_points_dictionary[name] = 0
+        if points > users_points_dictionary[name]:
+            users_points_dictionary[name] = points
+        if course not in courses_dictionary.keys():
+            courses_dictionary[course] = 0
+        courses_dictionary[course] += 1
+print("Results:")
+for name,points in users_points_dictionary.items():
+    print(f"{name} | {points}")
+print("Submissions:")
+for language, submissions in courses_dictionary.items():
+    print(f"{language} - {submissions}")
